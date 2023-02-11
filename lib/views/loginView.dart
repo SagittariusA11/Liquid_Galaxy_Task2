@@ -49,14 +49,24 @@ class _LoginViewState extends State<LoginView> {
       );
       await client.connect();
       Get.to(()=>HomeView());
+      // print("Hua...");
+      // print('master_ip: ${ipAddress.text}');
+      // print('master_password: ${password.text}');
+      // print('master_portNumber: ${portNumber.text}');
+      // print('numberofrigs: ${numberofrigs.text}');
       setState(() {
         connectionStatus = true;
       });
       // open logos
-      await LGConnection().openDemoLogos();
+      // await LGConnection().openDemoLogos();
       await client.disconnect();
     } catch (e) {
       ErrorView();
+      // print("nhiHua...");
+      // print('master_ip: ${ipAddress.text}');
+      // print('master_password: ${password.text}');
+      // print('master_portNumber: ${portNumber.text}');
+      // print('numberofrigs: ${numberofrigs.text}');
       setState(() {
         connectionStatus = false;
       });
@@ -158,7 +168,7 @@ class _LoginViewState extends State<LoginView> {
               Padding(
                 padding: EdgeInsets.only(bottom: 0.0),
                 child: TextFormField(
-                  // controller: username,
+                  controller: username,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     filled: true,
@@ -174,7 +184,7 @@ class _LoginViewState extends State<LoginView> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.0),
                 child: TextFormField(
-                  // controller: ipAddress,
+                  controller: ipAddress,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     filled: true,
@@ -190,7 +200,7 @@ class _LoginViewState extends State<LoginView> {
               Padding(
                 padding: EdgeInsets.only(bottom: 20.0),
                 child: TextFormField(
-                  // controller: portNumber,
+                  controller: portNumber,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     filled: true,
@@ -204,7 +214,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               TextFormField(
-                // controller: password,
+                controller: password,
                 obscureText: obscurePassword,
                 decoration: InputDecoration(
                   filled: true,
@@ -235,7 +245,7 @@ class _LoginViewState extends State<LoginView> {
               Padding(
                 padding: EdgeInsets.only(top: 20.0),
                 child: TextFormField(
-                  // controller: numberofrigs,
+                  controller: numberofrigs,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     filled: true,
@@ -269,8 +279,7 @@ class _LoginViewState extends State<LoginView> {
                       ),
                   ),
                   onPressed: () {
-                    // connect();
-                    Get.to(()=>HomeView());
+                    connect();
                     FocusManager.instance.primaryFocus?.unfocus();
                   },
                   style: ElevatedButton.styleFrom(
