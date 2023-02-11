@@ -41,6 +41,9 @@ dependencies:
   giff_dialog: ^1.0.1
   google_fonts: ^3.0.1
   get: ^4.6.5
+  flutter_translate: 3.0.0
+  http: ^0.13.5
+  ssh2: ^2.2.3
 
 dev_dependencies:
   flutter_test:
