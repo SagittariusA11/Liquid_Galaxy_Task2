@@ -1,26 +1,5 @@
-// import 'package:flutter/material.dart';
-// import 'package:lg_app/config/app_theme.dart';
-//
-// class HomeView extends StatefulWidget {
-//   const HomeView({Key? key}) : super(key: key);
-//
-//   @override
-//   State<HomeView> createState() => _HomeViewState();
-// }
-//
-// class _HomeViewState extends State<HomeView> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//       child: Text(
-//         'Home View',
-//         style: AppTheme().headText1,
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../utils/utils.dart';
 
@@ -30,7 +9,9 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin {
+
   late TabController _tabController;
+  late GoogleMapController _controller;
 
   @override
   void initState() {
@@ -42,61 +23,69 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Track and Map'),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: [
-            Tab(text: 'Track'),
-            Tab(text: 'Map'),
-          ],
-        ),
+        title: Text('Places'),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                elevatedButton(
-                  text: "New York",
-                  onpress: () {},
+      body: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    elevatedButton(
+                      text: "New York",
+                      onpress: () {},
+                    ),
+                    SizedBox(height: 16.0),
+                    elevatedButton(
+                      text: "London",
+                      onpress: () {},
+                    ),
+                  ],
                 ),
                 SizedBox(height: 16.0),
-                elevatedButton(
-                  text: "London",
-                  onpress: () {},
-                ),
-                SizedBox(height: 16.0),
-                elevatedButton(
-                  text: "Tokyo",
-                  onpress: () {},
-                ),
-                SizedBox(height: 16.0),
-                elevatedButton(
-                  text: "Sydney",
-                  onpress: () {},
-                ),
-                SizedBox(height: 16.0),
-                FloatingActionButton.extended(
-                  onPressed: () {},
-                  label: Text('View in Liquid Galaxy'),
-                  backgroundColor: Colors.blue,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    elevatedButton(
+                      text: "Tokyo",
+                      onpress: () {},
+                    ),
+                    SizedBox(height: 16.0),
+                    elevatedButton(
+                      text: "Sydney",
+                      onpress: () {},
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
-          Center(
-            child: Text(
-              'Maps',
-              style: TextStyle(
-                fontSize: 32.0,
-                fontWeight: FontWeight.bold,
+            SizedBox(height: 16.0),
+            FloatingActionButton.extended(
+              onPressed: () {
+                final snackBar = SnackBar(
+                  content: const Text('View has started'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+              label: Text(
+                'View in Liquid Galaxy',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
