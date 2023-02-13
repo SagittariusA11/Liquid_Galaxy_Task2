@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:lg_app/views/homeView.dart';
 import 'package:lg_app/views/loginView.dart';
 import 'package:lg_app/views/splashView.dart';
 import 'package:lg_app/config/app_theme.dart';
@@ -36,7 +37,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashView(),
+      home: HomeView(),
     );
   }
 }
