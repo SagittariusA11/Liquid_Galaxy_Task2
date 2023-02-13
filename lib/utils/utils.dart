@@ -11,8 +11,8 @@ Widget elevatedButton({text, Function? onpress}) {
     child: Text(
       text,
       style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w500,
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
       ),
     ),
   );
