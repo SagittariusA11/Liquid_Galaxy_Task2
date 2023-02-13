@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AppTheme{
 
-  //Light Theme
   Color primaryColor = selectedAppTheme.isDarkMode?
   Color(0xFF00121A):Color(0xFF004C7D);
   Color secondaryColor = selectedAppTheme.isDarkMode?
