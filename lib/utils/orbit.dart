@@ -55,18 +55,6 @@ class LookAt {
 
   LookAt(this.lng, this.lat, this.range, this.tilt, this.heading);
 
-  generateTag() {
-    return '''
-       <LookAt>
-        <longitude>${this.lng}</longitude>
-        <latitude>${this.lat}</latitude>
-        <range>${this.range}</range>
-        <tilt>${this.tilt}</tilt>
-        <heading>${this.heading}</heading>
-        <gx:altitudeMode>relativeToGround</gx:altitudeMode>
-      </LookAt>
-    ''';
-  }
 
   generateLinearString() {
     return '<LookAt><longitude>${this.lng}</longitude><latitude>${this.lat}</latitude><range>${this.range}</range><tilt>${this.tilt}</tilt><heading>${this.heading}</heading><gx:altitudeMode>relativeToGround</gx:altitudeMode></LookAt>';

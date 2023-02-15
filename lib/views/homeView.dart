@@ -23,12 +23,6 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
   double longvalue = -17.885454520583153;
   late AnimationController _rotationiconcontroller;
 
-  bool iitbhu = true;
-  bool iitb = false;
-  bool harvard = false;
-  bool mit = false;
-
-
   @override
   void initState() {
     _rotationiconcontroller = AnimationController(
@@ -66,85 +60,17 @@ class _HomeViewState extends State<HomeView> with SingleTickerProviderStateMixin
       ),
       body: Padding(
         padding: const EdgeInsets.all(32.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    elevatedButton(
-                      text: "IIT (BHU) - Varanasi",
-                      onpress: () {
-                        if(iitbhu) {
-                          LGConnection().sendToLG(KML().iitbhu(), "iitbhu").then((value) async {
-                            await LGConnection().cleanOrbit();
-                            playOrbit();
-                          });
-                        } else {
-                          LGConnection().cleanVisualization();
-                        }
-                      },
-                    ),
-                    SizedBox(height: 16.0),
-                    elevatedButton(
-                      text: "IIT Bombay",
-                      onpress: () {
-                        if(iitb) {
-                          LGConnection().sendToLG(KML().iitb(), "iitb").then((value) async {
-                            await LGConnection().cleanOrbit();
-                            playOrbit();
-                          });
-                        } else {
-                          LGConnection().cleanVisualization();
-                        }
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    elevatedButton(
-                      text: "MIT",
-                      onpress: () {
-                        if(mit) {
-                          LGConnection().sendToLG(KML().mit(), "mit").then((value) async {
-                            await LGConnection().cleanOrbit();
-                            playOrbit();
-                          });
-                        } else {
-                          LGConnection().cleanVisualization();
-                        }
-                      },
-                    ),
-                    SizedBox(height: 16.0),
-                    elevatedButton(
-                      text: "Harvard",
-                      onpress: () {
-                        if(harvard) {
-                          LGConnection().sendToLG(KML().harvard(), "harvard").then((value) async {
-                            await LGConnection().cleanOrbit();
-                            playOrbit();
-                          });
-                        } else {
-                          LGConnection().cleanVisualization();
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+        child: Center(
+          child: elevatedButton(
+            text: "IIT (BHU) - Varanasi",
+            onpress: () {
+              LGConnection().sendToLG(KML().iitbhu(), "iitbhu").then((value) async {
+                await LGConnection().cleanOrbit();
+                playOrbit();
+              });
+            },
+          ),
+        )
       ),
     );
   }
@@ -157,26 +83,6 @@ class LGConnection {
       return _createLocalFile(kml, projectname);
     }
     return Future.error('nogeodata');
-  }
-
-  Future cleanVisualization() async {
-    dynamic credencials = await _getCredentials();
-
-    SSHClient client = SSHClient(
-      host: '${credencials['ip']}',
-      port: int.parse('${credencials['port']}'),
-      username: '${credencials['username']}',
-      passwordOrKey: '${credencials['pass']}',
-    );
-
-    try {
-      await client.connect();
-      stopOrbit();
-      return await client.execute('> /var/www/html/kmls.txt');
-    } catch (e) {
-      print('Could not connect to host LG');
-      return Future.error(e);
-    }
   }
 
   _getCredentials() async {
